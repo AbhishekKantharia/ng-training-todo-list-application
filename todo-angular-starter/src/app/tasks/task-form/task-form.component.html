@@ -1,0 +1,47 @@
+<div class="slds-modal slds-fade-in-open" role="dialog" aria-modal="true">
+  <div class="slds-modal__container">
+    <header class="slds-modal__header slds-modal__header_empty">
+      <h2 class="slds-text-heading_medium">{{ task ? 'Edit Task' : 'New Task' }}</h2>
+    </header>
+    <div class="slds-modal__content slds-p-around_medium">
+      <form [formGroup]="form">
+        <div class="slds-grid slds-gutters">
+          <div class="slds-col slds-size_1-of-2">
+            <label class="slds-form-element__label">Assigned To *</label>
+            <input class="slds-input" formControlName="assignedTo" />
+          </div>
+          <div class="slds-col slds-size_1-of-2">
+            <label class="slds-form-element__label">Status *</label>
+            <select class="slds-select" formControlName="status">
+              <option>Not Started</option><option>In Progress</option><option>Completed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-m-top_medium">
+          <div class="slds-col slds-size_1-of-2">
+            <label class="slds-form-element__label">Due Date</label>
+            <input type="date" class="slds-input" formControlName="dueDate" />
+          </div>
+          <div class="slds-col slds-size_1-of-2">
+            <label class="slds-form-element__label">Priority *</label>
+            <select class="slds-select" formControlName="priority">
+              <option>Low</option><option>Normal</option><option>High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="slds-m-top_medium">
+          <label class="slds-form-element__label">Description</label>
+          <textarea class="slds-textarea" formControlName="comments"></textarea>
+        </div>
+      </form>
+    </div>
+
+    <footer class="slds-modal__footer">
+      <button class="slds-button" (click)="cancel.emit()">Cancel</button>
+      <button class="slds-button slds-button_brand" (click)="onSave()">Save</button>
+    </footer>
+  </div>
+</div>
+<div class="slds-backdrop slds-backdrop_open"></div>

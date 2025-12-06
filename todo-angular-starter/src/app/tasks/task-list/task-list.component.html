@@ -1,0 +1,41 @@
+<div class="slds-card">
+  <div class="slds-card__header slds-grid slds-grid_align-spread">
+    <div>
+      <h2 class="slds-text-heading_small">Tasks</h2>
+      <div class="slds-text-body_small">All Tasks</div>
+    </div>
+    <div>
+      <button class="slds-button slds-button_neutral" (click)="newTask()">New Task</button>
+      <button class="slds-button slds-button_neutral" (click)="load()">Refresh</button>
+    </div>
+  </div>
+
+  <div class="slds-card__body">
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+      <thead>
+        <tr>
+          <th></th><th>Assigned To</th><th>Status</th><th>Due Date</th><th>Priority</th><th>Comments</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of tasks">
+          <td><input type="checkbox" /></td>
+          <td>{{t.assignedTo}}</td>
+          <td>{{t.status}}</td>
+          <td>{{t.dueDate}}</td>
+          <td>{{t.priority}}</td>
+          <td>{{t.comments}}</td>
+          <td>
+            <button class="slds-button slds-button_neutral" (click)="editTask(t)">Edit</button>
+            <button class="slds-button slds-button_neutral" (click)="confirmDelete(t)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- modals -->
+<app-task-form *ngIf="showForm" [task]="editingTask" (saved)="saved($event)" (cancel)="cancelForm()"></app-task-form>
+
+<app-delete-confirm *ngIf="showDelete" [task]="deletingTask" (confirm)="doDelete()" (cancel)="cancelDelete()"></app-delete-confirm>
